@@ -1,29 +1,16 @@
-const express = require('express');      //This is required for creating server using express
-const mongoose = require('mongoose');
-const dotenv =require('dotenv');        //This is required for env file
-// const ToDoRoutes = require('./routes/ToDo');    // This is required for importing routes
+require("dotenv").config();
 
-//Defining Variables
-const app = express();
-dotenv.config();
-const PORT = process.env.PORT;
-//Defining Database Variable
-const DATABASE_URL = process.env.DATABASE_URL;
+const require = require('express'),             // Required for creating server
+    bodyparser = require('body-parser'),       // Parses body of URL
+    cors = require('cors');                   // For security features
 
-//Using The Packages
-app.use(express.json());
-// app.use('/ToDo', ToDoRoutes);
+//Using Dependencies that we imported previously
+const app = express();                  // using express for creating server
+app.use(cors());                       // using Cors for creatig security features
+app.use(bodyParser.json());           // using bodyParser for parsing the body
 
-app.get('/',(req,res)=> res.json({'message': 'server is running'}));
-
-// //Connecting API to mongoose
-// mongoose.connect(DATABASE_URL,{useNewUrlParser: true})
-// .then(()=>{
-//     //Listening On The Port
-//     console.log('Database Connected Succesfully');
-//     app.listen(PORT, () =>  console.log(`server started on port ${PORT}`)); 
-// })
-// .catch((err)=>{
-//     console.log('Database Connection Failure');
-//     console.log(err);
-// })
+//Listening on PORT
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () =>{
+    console.log('Server Started on Port: ${PORT}');
+})
