@@ -11,6 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Linking Routes File
 app.use('/book',require('../app/Routes/book_router'));
+app.use('/issuedate',require('../app/Routes/bookIssue_route'));
+// app.use('/student',require('../app/Routes/student_route'));
+// app.use('/librarian',require('../app/Routes/librarian_route'));
 
 //Exporting module of app
 module.exports = app;
