@@ -9,4 +9,8 @@ app.use(cors('*'));                    // using Cors for creatig security featur
 app.use(bodyParser.json());           // using bodyParser for parsing the body
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Linking Routes File
+app.use('/book',require('../app/Routes/book_router'));
+
+//Exporting module of app
 module.exports = app;
