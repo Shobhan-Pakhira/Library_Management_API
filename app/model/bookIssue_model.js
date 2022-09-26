@@ -43,7 +43,7 @@ const booksIssueSchema = new Schema({
 {
     timestamps: true,
     versionKey: false
-}) 
+});
 
 
 //Exporting Issue Date Schema

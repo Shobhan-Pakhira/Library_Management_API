@@ -54,7 +54,7 @@ const studentSchema = new Schema({
 {
     timestamps: true,
     versionKey: false
-})
+});
 
 //Exporting Student Detail Schema
 module.exports = mongoose.model('student',studentSchema);
