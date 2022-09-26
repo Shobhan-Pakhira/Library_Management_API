@@ -1,4 +1,4 @@
-const student =  require('../model/student_model');
+const student =  require('../model/student_model');                                      // Schema should start with capital letter
 const http_formatter = require('../Util/http_formatter');
 
 
@@ -6,7 +6,7 @@ const http_formatter = require('../Util/http_formatter');
 const createStudent = async (request,response) => {
     try {
         const User = await student.create(request.body);
-            return response.status(200).json(http_formatter(user,"Student Created Sucessfully"))
+            return response.status(200).json(http_formatter(User,"Student Created Sucessfully"))
     } catch (error) {
         console.log(error)
         return response.status(400).json(http_formatter(error,"Something Went Wrong",false))
@@ -18,13 +18,12 @@ const getStudent = async (request,response) => {
     try {
         const {pageNo, perPage} = request.query;
         const User = await student.find({});
-            return response.status(200).json(http_formatter(user,"Student Fetched Sucessfully"))
+            return response.status(200).json(http_formatter(User,"Student Fetched Sucessfully"))
     } catch (error) {
         console.log(error)
         return response.status(400).json(http_formatter(error,"Something Went Wrong",false))
     }
 };
-
 
 module.exports = {
     createStudent, 
