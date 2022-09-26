@@ -1,5 +1,5 @@
-require("dotenv").config();    
-             //Configured DotEnv File
+require("dotenv").config();    //Configured DotEnv File
+             
 const mongoose = require('mongoose');
 const app = require('./app/app');           //Importing App.js
 

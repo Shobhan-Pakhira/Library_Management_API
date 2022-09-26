@@ -1,7 +1,6 @@
 //Importing Mongoose
 const mongoose = require('mongoose');
 
-
 //Creating Schema for Books
 const Schema = mongoose.Schema;
 const booksSchema = new Schema({
