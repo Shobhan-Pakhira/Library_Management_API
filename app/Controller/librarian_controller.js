@@ -5,8 +5,8 @@ const http_formatter = require('../Util/http_formatter');
 //Creating  Librarian
 const createLibrarian = async (request,response) => {
     try {
-        const user_Lib = await librarian.create(request.body);
-            return response.status(200).json(http_formatter(user,"Librarian Created Sucessfully"))
+        const UserLib = await librarian.create(request.body);
+            return response.status(200).json(http_formatter(UserLib,"Librarian Created Sucessfully"))
     } catch (error) {
         console.log(error)
         return response.status(400).json(http_formatter(error,"Something Went Wrong",false))
@@ -16,9 +16,11 @@ const createLibrarian = async (request,response) => {
 //Getting Librarian
 const getLibrarian = async (request,response) => {
     try {
-        const {pageNo, perPage} = request.query;
-        const user = await librarian.find({});
-            return response.status(200).json(http_formatter(user,"User Fetched Sucessfully"))
+        const {pageNo = 1, perPage = 5} = request.query; // can be undefined in the query params.
+        const total_count = await Book.find({isDeleted: false}).count();
+        const has_more = total_count > pageNo * perPage;
+        const UserLib = await librarian.find({isDeleted: false}).skip(perPage * (pageNo - 1)).limit(perPage);
+            return response.status(200).json(http_formatter(UserLib,"User Fetched Sucessfully"))
     } catch (error) {
         console.log(error)
         return response.status(400).json(http_formatter(error,"Something Went Wrong",false))
