@@ -15,9 +15,11 @@ const createBook = async (request,response) => {
 //Getting Book
 const getBook = async (request,response) => {
     try {
-        const {pageNo, perPage} = request.query;
-        const user = await Book.find({});
-            return response.status(200).json(http_formatter(user,"User Fetched Sucessfully"))
+        const {pageNo = 1, perPage = 5} = request.query; // can be undefined in the query params.
+        const total_count = await Book.find({isDeleted: false}).count();
+        const has_more = total_count > pageNo * perPage;
+        const User = await Book.find({isDeleted: false}).skip(perPage * (pageNo - 1)).limit(perPage);
+            return response.status(200).json(http_formatter(User,"User Fetched Sucessfully"))
     } catch (error) {
         console.log(error)
         return response.status(400).json(http_formatter(error,"Something Went Wrong",false))

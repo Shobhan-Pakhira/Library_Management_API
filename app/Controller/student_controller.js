@@ -1,11 +1,11 @@
-const student =  require('../model/student_model');                                      // Schema should start with capital letter
+const Student =  require('../model/student_model');                                      // Schema should start with capital letter
 const http_formatter = require('../Util/http_formatter');
 
 
 //Creating Book
 const createStudent = async (request,response) => {
     try {
-        const User = await student.create(request.body);
+        const User = await Student.create(request.body);
             return response.status(200).json(http_formatter(User,"Student Created Sucessfully"))
     } catch (error) {
         console.log(error)
@@ -17,7 +17,7 @@ const createStudent = async (request,response) => {
 const getStudent = async (request,response) => {
     try {
         const {pageNo, perPage} = request.query;
-        const User = await student.find({});
+        const User = await Student.find({});
             return response.status(200).json(http_formatter(User,"Student Fetched Sucessfully"))
     } catch (error) {
         console.log(error)

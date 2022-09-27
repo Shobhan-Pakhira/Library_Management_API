@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 //Creating Schema for Books Issue Date
 const Schema = mongoose.Schema;
-const booksIssueSchema = new Schema({
+const BookIssueSchema = new Schema({
     issuedate:{
         type: Date,
         required: [true,"Issue Date is required"]
@@ -18,12 +18,12 @@ const booksIssueSchema = new Schema({
     },
     studentID:{
         type: String,
-        ref: "student",
+        ref: "Student",
         required: [true,"Student ID is required"]
     },
     issuedBy:{
         type: Schema.Types.ObjectId,
-        ref: "librarian",
+        ref: "Librarian",
         required: true
     },
     returnDate:{
@@ -47,4 +47,4 @@ const booksIssueSchema = new Schema({
 
 
 //Exporting Issue Date Schema
-module.exports = mongoose.model('issueDate',booksIssueSchema);
+module.exports = mongoose.model('IssueDate',BookIssueSchema);

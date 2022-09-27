@@ -48,4 +48,4 @@ const LibrarianSchema = new Schema({
 
 
 //Exporting the schema above
-module.exports = mongoose.model('librarian', LibrarianSchema);
+module.exports = mongoose.model('Librarian', LibrarianSchema);
